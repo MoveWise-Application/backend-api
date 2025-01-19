@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "group_member")
 public class GroupMember extends BaseEntity {
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "assigned_at", nullable = true)
     private Timestamp assignedAt;
