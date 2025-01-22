@@ -27,7 +27,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "order")
+@Table(name = "\"order\"")
 public class Order extends BaseEntity {
 
     @Column(name = "description")
@@ -38,6 +38,9 @@ public class Order extends BaseEntity {
 
     @Column(name = "total_price", precision = 10, scale = 2, nullable = false)
     private BigDecimal totalPrice;
+
+    @Column(name = "rate", nullable = true)
+    private double rate;
 
     @Enumerated(EnumType.ORDINAL)
     private OrderStatus orderStatus;

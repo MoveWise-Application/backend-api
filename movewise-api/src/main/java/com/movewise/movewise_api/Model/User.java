@@ -1,10 +1,16 @@
 package com.movewise.movewise_api.Model;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.movewise.movewise_api.Model.Enumberable.Gender;
+import com.movewise.movewise_api.Model.Enumberable.Provider;
 import com.movewise.movewise_api.Model.Enumberable.Role;
 import com.movewise.movewise_api.Model.Enumberable.Status;
 import com.movewise.movewise_api.Model.Enumberable.WorkingStatus;
@@ -29,8 +35,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Table(name = "users")
-public class User extends BaseEntity {
+@Table(name = "\"user\"")
+public class User extends BaseEntity implements UserDetails {
 
     @Column(name = "email", unique = true, nullable = false)
     private String email;
@@ -50,9 +56,6 @@ public class User extends BaseEntity {
     @Column(name = "date_of_birth", nullable = true)
     private LocalDateTime dateOfBirth;
 
-    @Column(name = "lastAccess", nullable = true)
-    private LocalDateTime lastAccess;
-
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
@@ -64,6 +67,9 @@ public class User extends BaseEntity {
 
     @Enumerated(EnumType.ORDINAL)
     private Role role;
+
+    @Enumerated(EnumType.ORDINAL)
+    private Provider provider;
 
     @OneToOne(mappedBy = "user")
     private BankAccount BankAccount;
@@ -79,4 +85,40 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<StatusLog> statusLogs;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        String roleNameWithPrefix = "ROLE_" + role.name();
+        return List.of(new SimpleGrantedAuthority(roleNameWithPrefix));
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }
