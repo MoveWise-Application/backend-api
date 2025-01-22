@@ -47,13 +47,13 @@ public class Transportation extends BaseEntity {
     @Enumerated(EnumType.ORDINAL)
     private TransportationStatus transportationStatus;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<GroupMember> members;
-
     @OneToMany(mappedBy = "transportation", cascade = CascadeType.ALL)
     @JsonIgnore
-    private List<TransportImage> transportationImages;
+    private List<AssignmentGroup> assignmentGroups;
+
+    @OneToMany(mappedBy = "transport", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<TransportImage> transportImages;
 
     @ManyToOne
     @JoinColumn(name = "truck_type_id")

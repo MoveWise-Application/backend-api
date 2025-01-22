@@ -17,19 +17,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "transport_image")
-public class TransportImage extends BaseEntity {
+@Table(name = "item")
+public class Item extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "url", nullable = false)
-    private String URL;
-
-    @Column(name = "note")
-    private String note;
-
     @ManyToOne
-    @JoinColumn(name = "transportation_id")
-    private Transportation transport;
+    @JoinColumn(name = "request_id")
+    private Request request;
 }

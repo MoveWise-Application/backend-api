@@ -1,7 +1,7 @@
 package com.movewise.movewise_api.Model.Enumberable;
 
 public enum GroupStatus {
-    CONFIRMING,
+    PENDING,
     APPROVED,
     REJECTED,
     WAITING,

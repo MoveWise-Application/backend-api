@@ -1,5 +1,7 @@
 package com.movewise.movewise_api.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -17,19 +19,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "transport_image")
-public class TransportImage extends BaseEntity {
+@Table(name = "status_log")
+public class StatusLog extends BaseEntity {
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "url", nullable = false)
-    private String URL;
-
-    @Column(name = "note")
-    private String note;
+    @Column(name = "description")
+    private String description;
 
     @ManyToOne
-    @JoinColumn(name = "transportation_id")
-    private Transportation transport;
+    @JoinColumn(name = "order_id")
+    private Order orderLog;
+
+    @ManyToOne
+    @JoinColumn(name = "request_id")
+    private Request requestLog;
+
+    @ManyToOne
+    @JoinColumn(name = "reporter_id", referencedColumnName = "id")
+    @JsonIgnore
+    private User reporter;
 }

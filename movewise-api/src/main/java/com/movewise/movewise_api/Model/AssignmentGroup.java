@@ -28,18 +28,17 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "assignment_group")
 public class AssignmentGroup extends BaseEntity {
-
     @Enumerated(EnumType.ORDINAL)
     private GroupStatus groupStatus;
-
-    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
-    @JsonIgnore
-    private List<GroupMember> groupMembers;
-
-    @OneToOne(mappedBy = "assignmentGroup")
-    private Request request;
 
     @ManyToOne
     @JoinColumn(name = "transportation_id")
     private Transportation transportation;
+
+    @OneToOne(mappedBy = "assignmentGroup")
+    private Request request;
+
+    @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<GroupMember> members;
 }

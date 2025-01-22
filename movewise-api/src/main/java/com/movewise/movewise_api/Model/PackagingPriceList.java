@@ -1,9 +1,13 @@
 package com.movewise.movewise_api.Model;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,19 +21,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "transport_image")
-public class TransportImage extends BaseEntity {
+@Table(name = "package_price_list")
+public class PackagingPriceList extends BaseEntity {
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "url", nullable = false)
-    private String URL;
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 
-    @Column(name = "note")
-    private String note;
-
-    @ManyToOne
-    @JoinColumn(name = "transportation_id")
-    private Transportation transport;
+    @OneToMany(mappedBy = "packagingPriceList", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Service> services;
 }

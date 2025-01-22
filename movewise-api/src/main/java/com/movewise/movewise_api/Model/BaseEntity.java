@@ -1,6 +1,6 @@
 package com.movewise.movewise_api.Model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 import org.hibernate.annotations.UuidGenerator;
@@ -10,8 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.Data;
 
 @Data
@@ -22,23 +20,27 @@ public abstract class BaseEntity {
     @UuidGenerator
     private UUID id;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_date", nullable = false, updatable = false)
-    private Timestamp createdDate;
+    private LocalDateTime createdDate;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated_date")
-    private Timestamp updatedDate;
+    private LocalDateTime updatedDate;
+
+    @Column(name = "is_deleted", nullable = false, columnDefinition = "bit default 0")
+    private boolean isDeleted;
+
+    @Column(name = "deleted_at")
+    private LocalDateTime deletedAt;
 
     @PrePersist
     protected void onCreate() {
-        Timestamp currentTimestamp = new Timestamp(System.currentTimeMillis());
-        this.createdDate = currentTimestamp;
-        this.updatedDate = currentTimestamp;
+        LocalDateTime now = LocalDateTime.now();
+        this.createdDate = now;
+        this.updatedDate = now;
     }
 
     @PreUpdate
     protected void onUpdate() {
-        this.updatedDate = new Timestamp(System.currentTimeMillis());
+        this.updatedDate = LocalDateTime.now();
     }
 }
