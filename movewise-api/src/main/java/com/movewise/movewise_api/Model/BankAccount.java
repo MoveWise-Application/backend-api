@@ -22,6 +22,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Table(name = "bank_accounts")
 public class BankAccount extends BaseEntity {
+
     @Column(name = "bank_code", nullable = true)
     private String bankCode;
 
