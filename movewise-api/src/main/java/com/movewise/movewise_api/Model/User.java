@@ -1,6 +1,6 @@
 package com.movewise.movewise_api.Model;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,8 +17,6 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -49,13 +47,11 @@ public class User extends BaseEntity {
     @Column(name = "phone", length = 10, nullable = true)
     private String phone;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "date_of_birth", nullable = true)
-    private Timestamp dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "lastAccess", nullable = true)
-    private Timestamp lastAccess;
+    private LocalDateTime lastAccess;
 
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
@@ -75,4 +71,12 @@ public class User extends BaseEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<GroupMember> members;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Request> requests;
+
+    @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<StatusLog> statusLogs;
 }
