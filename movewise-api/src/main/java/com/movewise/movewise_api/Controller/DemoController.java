@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.Controller;
+package com.movewise.movewise_api.controller;
 
 public class DemoController {
 

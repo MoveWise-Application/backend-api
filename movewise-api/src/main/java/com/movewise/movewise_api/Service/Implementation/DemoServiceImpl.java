@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.Service.Implementation;
+package com.movewise.movewise_api.service.implementation;
 
 public class DemoServiceImpl {
 
