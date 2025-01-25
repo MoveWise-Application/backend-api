@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.Utilities;
+package com.movewise.movewise_api.utilities;
 
 public class DemoUtilities {
 

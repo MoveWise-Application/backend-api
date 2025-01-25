@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.Repository;
+package com.movewise.movewise_api.repository;
 
 public class DemoRepository {
 
