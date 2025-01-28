@@ -21,7 +21,7 @@ public class RequestRequest {
 
     public UUID serviceId;
 
-    public List<UUID> items;
+    public List<UUID> itemIds;
 
-    public RequestCustomerInfoRequest customerInfoRequest;
+    public RequestCustomerInfoRequest requestCustomerInfo;
 }
