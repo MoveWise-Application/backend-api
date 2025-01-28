@@ -25,7 +25,7 @@ import lombok.NoArgsConstructor;
 @Table(name = "service")
 public class RequestCustomerInfo extends BaseEntity {
 
-    @Column(name = "email", unique = true, nullable = false)
+    @Column(name = "email", unique = true, nullable = true)
     private String email;
 
     @Column(name = "full_name", nullable = false)
@@ -34,7 +34,7 @@ public class RequestCustomerInfo extends BaseEntity {
     @Column(name = "avatar", nullable = true)
     private String avatar;
 
-    @Column(name = "phone", length = 10, nullable = true)
+    @Column(name = "phone", length = 10, nullable = false)
     private String phone;
 
     @Column(name = "date_of_birth", nullable = true)
