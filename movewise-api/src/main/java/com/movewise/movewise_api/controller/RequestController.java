@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.movewise.movewise_api.entity.enumberable.RequestStatus;
-import com.movewise.movewise_api.model.request.RequestRequest;
-import com.movewise.movewise_api.model.response.RequestResponse;
+import com.movewise.movewise_api.model.request.request.RequestRequest;
 import com.movewise.movewise_api.model.response.ResultResponse;
+import com.movewise.movewise_api.model.response.request.RequestResponse;
 import com.movewise.movewise_api.service.RequestService;
 
 @RestController
@@ -38,7 +38,7 @@ public class RequestController {
         }
     }
 
-    @PutMapping("/{requestId}/status")
+    @PutMapping("{requestId}/status")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ResultResponse<RequestResponse>> updateRequestStatus(
             @PathVariable UUID requestId,

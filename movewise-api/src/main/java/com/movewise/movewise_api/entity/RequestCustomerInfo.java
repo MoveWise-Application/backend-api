@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "service")
+@Table(name = "request_customer_info")
 public class RequestCustomerInfo extends BaseEntity {
 
     @Column(name = "email", unique = true, nullable = true)

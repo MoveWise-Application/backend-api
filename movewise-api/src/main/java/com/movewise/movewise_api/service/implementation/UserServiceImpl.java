@@ -6,12 +6,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import com.movewise.movewise_api.entity.User;
 import com.movewise.movewise_api.exception.CustomException;
 import com.movewise.movewise_api.repository.UserRepository;
 import com.movewise.movewise_api.service.UserService;
 
+@Service
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
