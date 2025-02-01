@@ -1,5 +1,7 @@
 package com.movewise.movewise_api.entity;
 
+import java.math.BigDecimal;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
@@ -25,6 +27,9 @@ public class LoadingPriceList extends BaseEntity {
 
     @Column(name = "loading_labor", nullable = false)
     private int loadingLabor;
+
+    @Column(name = "total_price", nullable = false)
+    private BigDecimal totalPrice;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "truck_type_id", referencedColumnName = "id")

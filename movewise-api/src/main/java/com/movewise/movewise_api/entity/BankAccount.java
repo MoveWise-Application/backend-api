@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Table(name = "bank_accounts")
+@Table(name = "bank_account")
 public class BankAccount extends BaseEntity {
 
     @Column(name = "bank_code", nullable = true)
