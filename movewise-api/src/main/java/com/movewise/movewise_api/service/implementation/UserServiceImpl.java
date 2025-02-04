@@ -30,7 +30,9 @@ public class UserServiceImpl implements UserService {
                     && authentication.getPrincipal() instanceof User) {
                 UserDetails userDetails = (User) authentication.getPrincipal();
                 String email = userDetails.getUsername();
-                User user = userRepository.findByEmail(email);
+                User user = userRepository.findByEmail(email)
+                        .orElseThrow(() -> new CustomException("User not found.", HttpStatus.NOT_FOUND));
+                ;
                 return user;
             } else {
                 throw new CustomException("Cannot recieve JWT token!", HttpStatus.BAD_REQUEST);
