@@ -1,9 +1,11 @@
-package com.movewise.movewise_api.model.request;
+package com.movewise.movewise_api.model.request.request;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+
+import com.movewise.movewise_api.model.request.requestCustomerInfo.RequestCustomerInfoRequest;
 
 public class RequestRequest {
 
@@ -21,7 +23,7 @@ public class RequestRequest {
 
     public UUID serviceId;
 
-    public List<UUID> items;
+    public List<UUID> itemIds;
 
-    public RequestCustomerInfoRequest customerInfoRequest;
+    public RequestCustomerInfoRequest requestCustomerInfo;
 }

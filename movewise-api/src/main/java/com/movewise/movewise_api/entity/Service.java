@@ -1,7 +1,5 @@
 package com.movewise.movewise_api.entity;
 
-import java.math.BigDecimal;
-
 import com.movewise.movewise_api.entity.enumberable.Status;
 
 import jakarta.persistence.Column;
@@ -33,11 +31,11 @@ public class Service extends BaseEntity {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "version", nullable = false)
+    private String version;
+
     @Enumerated(EnumType.ORDINAL)
     private Status status;
-
-    @Column(name = "total_price", nullable = false)
-    private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "package_price_list_id")
@@ -48,4 +46,8 @@ public class Service extends BaseEntity {
 
     @OneToOne(mappedBy = "requestedService")
     private Request request;
+
+    @ManyToOne
+    @JoinColumn(name = "parent_service_id")
+    private Service parentService;
 }
