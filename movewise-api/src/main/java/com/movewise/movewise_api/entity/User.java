@@ -56,6 +56,12 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "date_of_birth", nullable = true)
     private LocalDateTime dateOfBirth;
 
+    @Column(name = "verification_code", length = 64)
+    private String verificationCode;
+
+    @Column(name = "enabled", nullable = false, columnDefinition = "bit default 0")
+    private boolean enabled;
+
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
 
@@ -119,6 +125,6 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }
