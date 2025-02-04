@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.model.request;
+package com.movewise.movewise_api.model.request.authentication;
 
 import java.time.LocalDateTime;
 

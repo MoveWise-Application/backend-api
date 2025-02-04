@@ -1,4 +1,4 @@
-package com.movewise.movewise_api.model.request;
+package com.movewise.movewise_api.model.request.authentication;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
