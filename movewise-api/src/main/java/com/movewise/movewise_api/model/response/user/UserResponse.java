@@ -1,8 +1,9 @@
-package com.movewise.movewise_api.model.response;
+package com.movewise.movewise_api.model.response.user;
 
 import org.springframework.lang.Nullable;
 
 import com.movewise.movewise_api.entity.enumberable.Gender;
+import com.movewise.movewise_api.entity.enumberable.Role;
 import com.movewise.movewise_api.entity.enumberable.Status;
 
 import lombok.AllArgsConstructor;
@@ -20,4 +21,5 @@ public class UserResponse {
     private @Nullable String avatar;
     private Gender gender;
     private Status status;
+    private Role role;
 }

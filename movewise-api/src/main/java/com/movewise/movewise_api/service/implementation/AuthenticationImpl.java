@@ -18,11 +18,11 @@ import com.movewise.movewise_api.entity.enumberable.Status;
 import com.movewise.movewise_api.exception.CustomException;
 import com.movewise.movewise_api.model.request.authentication.SignInRequest;
 import com.movewise.movewise_api.model.request.authentication.SignUpRequest;
-import com.movewise.movewise_api.model.response.UserResponse;
 import com.movewise.movewise_api.repository.UserRepository;
 import com.movewise.movewise_api.service.AuthenticationService;
 import com.movewise.movewise_api.service.JwtService;
 import com.movewise.movewise_api.model.response.authentication.AuthenticationResponse;
+import com.movewise.movewise_api.model.response.user.UserResponse;
 
 @Service
 public class AuthenticationImpl implements AuthenticationService {
@@ -54,6 +54,8 @@ public class AuthenticationImpl implements AuthenticationService {
             User user = modelMapper.map(request, User.class);
 
             user.setPassword(passwordEncoder.encode(request.getPassword()));
+            user.setStatus(Status.ACTIVE);
+            user.setVerificationCode(randomCode);
 
             var response = modelMapper.map(userRepository.save(user), UserResponse.class);
 
