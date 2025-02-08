@@ -3,7 +3,9 @@ package com.movewise.movewise_api.model.request.authentication;
 import java.time.LocalDateTime;
 
 import com.movewise.movewise_api.entity.enumberable.Gender;
+import com.movewise.movewise_api.entity.enumberable.Role;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 public class SignUpRequest {
     @NotBlank(message = "The email is required.")
     @Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$", message = "The email is invalid.")
+    @Schema(example = "example@gmail.com")
     private String email;
 
     @NotBlank(message = "The password is required.")
@@ -36,4 +39,7 @@ public class SignUpRequest {
 
     @NotNull(message = "The gender is required.")
     private Gender gender;
+
+    @NotNull(message = "The role is required.")
+    private Role role;
 }
