@@ -20,7 +20,7 @@ public class ConfigurationController {
     private ConfigurationService configurationService;
 
     @PostMapping("invoice/update")
-    public ResponseEntity<ResultResponse<InvoiceConfigResponse>> updateConfig(@RequestParam int days,
+    public ResponseEntity<ResultResponse<InvoiceConfigResponse>> updateInvoiceConfiguration(@RequestParam int days,
             @RequestParam String description) {
         ResultResponse<InvoiceConfigResponse> resultResponse = configurationService.updateInvoiceConfiguration(days,
                 description);
@@ -32,7 +32,7 @@ public class ConfigurationController {
     }
 
     @GetMapping("invoice/current")
-    public ResponseEntity<ResultResponse<InvoiceConfigResponse>> getCurrentConfig() {
+    public ResponseEntity<ResultResponse<InvoiceConfigResponse>> getCurrentInvoiceConfiguration() {
         ResultResponse<InvoiceConfigResponse> resultResponse = configurationService.getCurrentInvoiceConfiguration();
         if (resultResponse.isSuccess()) {
             return ResponseEntity.status(resultResponse.getStatusCode()).body(resultResponse);
