@@ -1,9 +1,9 @@
 package com.movewise.movewise_api;
 
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

@@ -4,10 +4,10 @@ public class InvoiceConfigResponse {
 
     public String description;
 
-    public int dueDate;
+    public int dueDuration;
 
-    public InvoiceConfigResponse(int dueDate, String description) {
-        this.dueDate = dueDate;
+    public InvoiceConfigResponse(int dueDuration, String description) {
+        this.dueDuration = dueDuration;
         this.description = description;
     }
 }

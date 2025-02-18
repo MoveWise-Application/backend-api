@@ -22,7 +22,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     public ResultResponse<InvoiceConfigResponse> updateInvoiceConfiguration(int days, String description) {
         try {
             // Implement the changes
-            invoiceConfig.setDueDays(days);
+            invoiceConfig.getDueDuration();
             invoiceConfig.setDescription(description);
 
             // Convert to response
@@ -43,7 +43,7 @@ public class ConfigurationServiceImpl implements ConfigurationService {
     public ResultResponse<InvoiceConfigResponse> getCurrentInvoiceConfiguration() {
         try {
             // Fetch current configuration values
-            int dueDays = invoiceConfig.getDueDays();
+            int dueDays = invoiceConfig.getDueDuration();
             String description = invoiceConfig.getDescription();
 
             // Convert to response

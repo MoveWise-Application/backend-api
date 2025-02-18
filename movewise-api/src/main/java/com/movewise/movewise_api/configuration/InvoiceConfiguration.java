@@ -10,19 +10,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "invoice")
 public class InvoiceConfiguration {
-    private int dueDays = 14;
+    private int dueDuration = 14;
     private String description = "Invoice for game development services";
 
     // AtomicInteger for multi-thread (work asynchronously)
     private final AtomicInteger dailyCounter = new AtomicInteger(0);
     private String currentDate;
 
-    public int getDueDays() {
-        return dueDays;
+    public int getDueDuration() {
+        return dueDuration;
     }
 
-    public void setDueDays(int dueDays) {
-        this.dueDays = dueDays;
+    public void setDueDuration(int dueDurations) {
+        this.dueDuration = dueDurations;
     }
 
     public String getDescription() {

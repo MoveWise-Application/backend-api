@@ -56,7 +56,7 @@ public class InvoiceServiceImpl implements InvoiceService {
             invoice.setDescription(invoiceConfiguration.getDescription());
             invoice.setNote("");
             invoice.setInvoiceNumber(invoiceConfiguration.generateInvoiceNumber());
-            invoice.setDueDate(LocalDateTime.now().plusDays(invoiceConfiguration.getDueDays()));
+            invoice.setDueDate(LocalDateTime.now().plusDays(invoiceConfiguration.getDueDuration()));
 
             // Set price - only the loadingPriceList of the service price is calculated
             invoice.setTotalPrice(request.getRequestedService().getTransportationPriceList().getTruckType()
