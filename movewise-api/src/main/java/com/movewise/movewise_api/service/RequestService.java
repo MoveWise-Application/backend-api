@@ -1,5 +1,6 @@
 package com.movewise.movewise_api.service;
 
+import java.util.List;
 import java.util.UUID;
 
 import com.movewise.movewise_api.entity.enumberable.RequestStatus;
@@ -11,4 +12,7 @@ public interface RequestService {
     ResultResponse<RequestResponse> createRequest(RequestRequest request);
 
     ResultResponse<RequestResponse> updateRequestStatus(UUID requestId, RequestStatus status, String adminResponse);
+
+    ResultResponse<RequestResponse> assignAssignmentGroup(UUID requestId, String adminResponse, List<UUID> memberIds,
+            UUID transportId);
 }

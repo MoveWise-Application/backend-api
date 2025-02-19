@@ -1,5 +1,6 @@
 package com.movewise.movewise_api.controller;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,7 @@ public class RequestController {
     public ResponseEntity<ResultResponse<RequestResponse>> createRequest(@RequestBody RequestRequest request) {
         ResultResponse<RequestResponse> resultResponse = requestService.createRequest(request);
 
-        if (resultResponse.isSuccess()) {
-            return ResponseEntity.status(resultResponse.getStatusCode()).body(resultResponse);
-        } else {
-            return ResponseEntity.status(resultResponse.getStatusCode()).body(resultResponse);
-        }
+        return ResponseEntity.status(resultResponse.getStatusCode()).body(resultResponse);
     }
 
     @PutMapping("{requestId}/status")
@@ -47,10 +44,20 @@ public class RequestController {
 
         ResultResponse<RequestResponse> result = requestService.updateRequestStatus(requestId, status,
                 adminResponse);
-        if (result.isSuccess()) {
-            return ResponseEntity.status(result.getStatusCode()).body(result);
-        } else {
-            return ResponseEntity.status(result.getStatusCode()).body(result);
-        }
+        return ResponseEntity.status(result.getStatusCode()).body(result);
+    }
+
+    @PutMapping("{requestId}/assign")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<ResultResponse<RequestResponse>> assignAssignmentGroup(
+            @PathVariable UUID requestId,
+            @RequestParam String adminResponse,
+            @RequestParam UUID transportId,
+            @RequestBody List<UUID> memberIds) {
+
+        ResultResponse<RequestResponse> result = requestService.assignAssignmentGroup(requestId, adminResponse,
+                memberIds, transportId);
+
+        return ResponseEntity.status(result.getStatusCode()).body(result);
     }
 }

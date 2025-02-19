@@ -39,7 +39,7 @@ public class Request extends BaseEntity {
     private RequestStatus requestStatus;
 
     @Column(name = "transported_date", nullable = true)
-    private LocalDateTime TransportedDate;
+    private LocalDateTime transportedDate;
 
     @Column(name = "note")
     private String note;

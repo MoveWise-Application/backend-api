@@ -1,14 +1,12 @@
 package com.movewise.movewise_api.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,9 +22,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "group_member")
 public class GroupMember extends BaseEntity {
 
-    @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "assigned_at", nullable = true)
-    private Timestamp assignedAt;
+    private LocalDateTime assignedAt;
 
     @Column(name = "is_accepted", nullable = false, columnDefinition = "bit default 0")
     private boolean isAccepted;
