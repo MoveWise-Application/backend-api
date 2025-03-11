@@ -15,22 +15,7 @@ on:
 jobs:
   build-main:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
-    steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: "17"
-          distribution: "temurin"
-          cache: maven
-      - name: Build and test with Maven
-        run: mvn --batch-mode package
 
-  build-dev:
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
     steps:
       - name: Check out the repository
         uses: actions/checkout@v4
