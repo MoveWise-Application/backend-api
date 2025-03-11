@@ -9,9 +9,6 @@ on:
       - main
       - dev
 
-  # schedule:
-  #   - cron: "0 1 * * *"
-
 jobs:
   build-main:
     runs-on: windows-latest
@@ -27,10 +24,17 @@ jobs:
           distribution: "temurin"
           cache: maven
 
-      - name: Start SQL Express
+      - name: Install and Start SQL Server Express
         run: |
+          choco install sql-server-express -y
           net start MSSQL$SQLEXPRESS
+          sleep 10  # Wait for SQL Server to start
+        shell: pwsh
+
+      - name: Verify SQL Server Express is Running
+        run: |
           sqlcmd -S localhost\SQLEXPRESS -Q "SELECT @@VERSION"
+        shell: pwsh
 
       - name: Build and test with Maven
         run: mvn --batch-mode package
