@@ -27,7 +27,7 @@ jobs:
       - name: Install and Start SQL Server Express
         run: |
           choco install sql-server-express -y
-          net start MSSQL$SQLEXPRESS
+          net start MSSQLSERVER
           sleep 10  # Wait for SQL Server to start
         shell: pwsh
 
