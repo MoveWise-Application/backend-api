@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.movewise.movewise_api.entity.User;
 import com.movewise.movewise_api.exception.CustomException;
+import com.movewise.movewise_api.model.response.user.UserResponse;
 import com.movewise.movewise_api.repository.UserRepository;
 import com.movewise.movewise_api.service.UserService;
 
@@ -65,6 +66,21 @@ public class UserServiceImpl implements UserService {
 
                 return true;
             }
+        } catch (Exception e) {
+            throw new CustomException("An unexpected error occurred.", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Override
+    public UserResponse findUserByEmail(String email) {
+        try {
+            User user = userRepository.findByEmail(email).get();
+            if (user == null) {
+                throw new CustomException("Cannot find user.", HttpStatus.BAD_REQUEST);
+            }
+
+            UserResponse response = modelMapper.map(user, UserResponse.class);
+            return response;
         } catch (Exception e) {
             throw new CustomException("An unexpected error occurred.", HttpStatus.INTERNAL_SERVER_ERROR);
         }

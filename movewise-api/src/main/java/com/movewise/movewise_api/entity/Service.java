@@ -1,13 +1,17 @@
 package com.movewise.movewise_api.entity;
 
+import java.util.List;
+
 import com.movewise.movewise_api.entity.enumberable.Status;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -15,6 +19,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import net.minidev.json.annotate.JsonIgnore;
 
 @Entity
 @Builder
@@ -44,8 +49,9 @@ public class Service extends BaseEntity {
     @OneToOne(mappedBy = "service")
     private TransportationPriceList transportationPriceList;
 
-    @OneToOne(mappedBy = "requestedService")
-    private Request request;
+    @OneToMany(mappedBy = "requestedService", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Request> requests;
 
     @ManyToOne
     @JoinColumn(name = "parent_service_id")

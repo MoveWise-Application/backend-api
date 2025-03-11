@@ -2,6 +2,7 @@ package com.movewise.movewise_api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +33,7 @@ public class ConfigurationController {
     }
 
     @GetMapping("invoice/current")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<ResultResponse<InvoiceConfigResponse>> getCurrentInvoiceConfiguration() {
         ResultResponse<InvoiceConfigResponse> resultResponse = configurationService.getCurrentInvoiceConfiguration();
         if (resultResponse.isSuccess()) {
