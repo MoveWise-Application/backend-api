@@ -11,7 +11,7 @@ on:
 
 jobs:
   build-main:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Check out the repository
@@ -23,18 +23,6 @@ jobs:
           java-version: "17"
           distribution: "temurin"
           cache: maven
-
-      - name: Install and Start SQL Server Express
-        run: |
-          choco install sql-server-express -y
-          net start MSSQLSERVER
-          sleep 10  # Wait for SQL Server to start
-        shell: pwsh
-
-      - name: Verify SQL Server Express is Running
-        run: |
-          sqlcmd -S localhost\SQLEXPRESS -Q "SELECT @@VERSION"
-        shell: pwsh
 
       - name: Build and test with Maven
         run: mvn --batch-mode package
