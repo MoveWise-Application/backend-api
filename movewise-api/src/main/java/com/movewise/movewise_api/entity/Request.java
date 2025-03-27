@@ -59,9 +59,8 @@ public class Request extends BaseEntity {
     @JoinColumn(name = "customer_id")
     private User customer;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "service_id", referencedColumnName = "id")
-    @JsonIgnore
     private Service requestedService;
 
     @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)

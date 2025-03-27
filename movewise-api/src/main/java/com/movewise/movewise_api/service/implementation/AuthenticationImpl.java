@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.internal.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -23,11 +22,11 @@ import com.movewise.movewise_api.entity.enumberable.Status;
 import com.movewise.movewise_api.exception.CustomException;
 import com.movewise.movewise_api.model.request.authentication.SignInRequest;
 import com.movewise.movewise_api.model.request.authentication.SignUpRequest;
+import com.movewise.movewise_api.model.response.authentication.AuthenticationResponse;
+import com.movewise.movewise_api.model.response.user.UserResponse;
 import com.movewise.movewise_api.repository.UserRepository;
 import com.movewise.movewise_api.service.AuthenticationService;
 import com.movewise.movewise_api.service.JwtService;
-import com.movewise.movewise_api.model.response.authentication.AuthenticationResponse;
-import com.movewise.movewise_api.model.response.user.UserResponse;
 
 @Service
 public class AuthenticationImpl implements AuthenticationService {
@@ -48,10 +47,11 @@ public class AuthenticationImpl implements AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
-            AuthenticationManager authenticationManager) {
+            AuthenticationManager authenticationManager, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authenticationManager = authenticationManager;
+        this.modelMapper = modelMapper;
     }
 
     @Override
