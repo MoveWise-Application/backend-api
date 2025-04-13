@@ -14,7 +14,7 @@ import com.movewise.movewise_api.model.response.invoice.InvoiceConfigResponse;
 import com.movewise.movewise_api.service.ConfigurationService;
 
 @RestController
-@RequestMapping(value = "/api/auth/configurations")
+@RequestMapping(value = "/api/configurations")
 public class ConfigurationController {
 
     @Autowired

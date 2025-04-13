@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.movewise.movewise_api.service.ServiceService;
 
 @RestController
-@RequestMapping(value = "/api/auth/services")
+@RequestMapping(value = "/api/services")
 public class ServiceController {
 
     @Autowired

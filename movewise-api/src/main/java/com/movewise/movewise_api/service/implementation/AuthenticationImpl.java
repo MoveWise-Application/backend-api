@@ -86,7 +86,7 @@ public class AuthenticationImpl implements AuthenticationService {
     public AuthenticationResponse signIn(SignInRequest request) {
         try {
             User user = userRepository.findByEmail(request.getEmail())
-                    .orElseThrow(() -> new CustomException("Invalid email or password.", HttpStatus.UNAUTHORIZED));
+                    .orElseThrow(() -> new BadCredentialsException("Invalid email or password."));
 
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
@@ -117,7 +117,7 @@ public class AuthenticationImpl implements AuthenticationService {
                     "This account is not activated. Please verify your email.",
                     HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            throw new RuntimeException("Error: " + e.getMessage());
+            throw new RuntimeException(e.getMessage());
         }
     }
 

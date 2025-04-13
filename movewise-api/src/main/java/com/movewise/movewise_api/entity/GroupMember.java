@@ -25,8 +25,9 @@ public class GroupMember extends BaseEntity {
     @Column(name = "assigned_at", nullable = true)
     private LocalDateTime assignedAt;
 
-    @Column(name = "is_accepted", nullable = false, columnDefinition = "bit default 0")
-    private boolean isAccepted;
+    @Column(name = "is_accepted", nullable = false)
+    @Builder.Default
+    private boolean isAccepted = false;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

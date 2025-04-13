@@ -59,8 +59,9 @@ public class User extends BaseEntity implements UserDetails {
     @Column(name = "verification_code", length = 64)
     private String verificationCode;
 
-    @Column(name = "enabled", nullable = false, columnDefinition = "bit default 0")
-    private boolean enabled;
+    @Column(name = "enabled", nullable = false)
+    @Builder.Default
+    private boolean enabled = false;
 
     @Enumerated(EnumType.ORDINAL)
     private Gender gender;
@@ -91,6 +92,9 @@ public class User extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "reporter", cascade = CascadeType.ALL)
     @JsonIgnore
     private List<StatusLog> statusLogs;
+
+    @OneToOne(mappedBy = "driver")
+    private DriverInformation DriverInformation;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

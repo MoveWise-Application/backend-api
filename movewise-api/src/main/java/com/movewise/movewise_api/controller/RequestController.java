@@ -21,7 +21,7 @@ import com.movewise.movewise_api.model.response.request.RequestResponse;
 import com.movewise.movewise_api.service.RequestService;
 
 @RestController
-@RequestMapping(value = "/api/auth/requests")
+@RequestMapping(value = "/api/requests")
 public class RequestController {
 
     @Autowired

@@ -19,7 +19,7 @@ import com.movewise.movewise_api.service.AuthenticationService;
 import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 
-@RequestMapping("/api/")
+@RequestMapping("/api/authentications")
 @RestController
 public class AuthenticationController {
     @Autowired
