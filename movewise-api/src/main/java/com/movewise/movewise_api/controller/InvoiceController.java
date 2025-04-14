@@ -17,7 +17,7 @@ import com.movewise.movewise_api.model.response.invoice.InvoiceResponse;
 import com.movewise.movewise_api.service.InvoiceService;
 
 @RestController
-@RequestMapping(value = "/api/auth/invoices")
+@RequestMapping(value = "/api/invoices")
 public class InvoiceController {
 
     @Autowired

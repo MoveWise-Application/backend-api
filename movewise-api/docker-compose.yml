@@ -1,0 +1,35 @@
+services:
+  movewise-db:
+    image: postgres:17
+    container_name: movewise-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: movewise_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - movewise-network
+
+  movewise-api:
+    build: .
+    image: movewise-api
+    container_name: movewise-api
+    depends_on:
+      - movewise-db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://movewise-db:5432/movewise_db
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 12345
+    ports:
+      - "8080:8080"
+    networks:
+      - movewise-network
+
+volumes:
+  pgdata:
+
+networks:
+  movewise-network:
