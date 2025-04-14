@@ -1,6 +1,7 @@
 package com.movewise.movewise_api;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,7 +19,9 @@ public class MovewiseApiApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		openSwaggerUI();
+		if (!isRunningInDocker()) {
+			openSwaggerUI();
+		}
 	}
 
 	private void openSwaggerUI() {
@@ -41,7 +44,12 @@ public class MovewiseApiApplication implements CommandLineRunner {
 				}
 			}
 		} catch (URISyntaxException | IOException e) {
-			e.printStackTrace();
+			System.err.println("Failed to open Swagger UI: " + e.getMessage());
 		}
+	}
+
+	private boolean isRunningInDocker() {
+		// Typical indicator of Docker
+		return new File("/.dockerenv").exists();
 	}
 }
